@@ -1,0 +1,7 @@
+<h1>{{product.title}}</h1>
+<p>Preço: R$ {{product.price}}</p>
+<p>Descrição: {{product.description}}</p>
+
+<form method="POST" action="/api/carts/{{cartId}}/products/{{product._id}}">
+  <button type="submit">Adicionar ao Carrinho</button>
+</form>

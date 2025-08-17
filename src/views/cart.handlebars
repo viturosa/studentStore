@@ -1,0 +1,13 @@
+<h1>Meu Carrinho</h1>
+<ul>
+  {{#each cart.products}}
+    <li>
+      {{this.product.title}} - Quantidade: {{this.quantity}}
+      <form method="POST" action="/api/carts/{{../cart._id}}/products/{{this.product._id}}?_method=DELETE">
+        <button type="submit">Remover</button>
+      </form>
+    </li>
+  {{/each}}
+</ul>
+
+<a href="/products">Voltar à loja</a>
