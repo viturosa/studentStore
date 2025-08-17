@@ -1,5 +1,6 @@
 import { Router } from "express";
 import Product from "../models/Product.js";
+console.log("DEBUG Product no router:", typeof Product.paginate);
 import Cart from "../models/Cart.js";
 
 const router = Router();
@@ -32,9 +33,13 @@ router.get("/products", async (req, res) => {
     const options = { limit: parseInt(limit), page: parseInt(page), lean: true };
 
     let filter = {};
-    if (query) {
-      filter = { $or: [{ category: query }, { status: query }] };
-    }
+   if (query) {
+  if (query === "true" || query === "false") {
+    filter = { status: query === "true" };
+  } else {
+    filter = { category: query };
+  }
+}
 
     let sortOption = {};
     if (sort === "asc") sortOption = { price: 1 };
@@ -51,10 +56,10 @@ router.get("/products", async (req, res) => {
       page: products.page,
       totalPages: products.totalPages,
     });
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Erro ao carregar produtos");
-  }
+ } catch (error) {
+  console.error("Erro na rota /products:", error);
+  res.status(500).send("Erro ao carregar produtos");
+}
 });
 
 
