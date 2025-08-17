@@ -15,7 +15,7 @@ mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
-.then(() => console.log('✅ Conectado ao MongoDB'))
+.then(() => console.log('Conectado ao MongoDB'))
 .catch((err) => console.error('Erro de conexão ao MongoDB:', err));
 
 
@@ -31,4 +31,4 @@ io.on('connection', (socket) => {
 app.set('io', io);
 
 const PORT = process.env.PORT || 3000;
-server.listen(PORT, () => console.log(`🚀 Servidor rodando na porta ${PORT}`));
+server.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
